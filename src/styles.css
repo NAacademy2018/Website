@@ -1,0 +1,117 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-glow: var(--glow);
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Brand — Royal Blue from logo */
+  --navy-deep: oklch(0.32 0.20 264);
+  --navy: oklch(0.42 0.18 264);
+  --glow: oklch(0.52 0.22 264);
+
+  --background: oklch(0.99 0.004 264);
+  --foreground: oklch(0.18 0.10 264);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.10 264);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.10 264);
+  --primary: oklch(0.32 0.20 264);
+  --primary-foreground: oklch(0.98 0.005 264);
+  --secondary: oklch(0.96 0.025 264);
+  --secondary-foreground: oklch(0.25 0.22 264);
+  --muted: oklch(0.96 0.02 264);
+  --muted-foreground: oklch(0.52 0.06 264);
+  --accent: oklch(0.52 0.22 264);
+  --accent-foreground: oklch(0.98 0.005 264);
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.98 0.005 250);
+  --border: oklch(0.90 0.035 264);
+  --input: oklch(0.90 0.035 264);
+  --ring: oklch(0.52 0.22 264);
+
+  /* Light hero gradient — airy blue-tinted sky */
+  --gradient-hero: radial-gradient(1200px 600px at 80% -10%, color-mix(in oklab, var(--glow) 12%, transparent), transparent 60%),
+                   radial-gradient(900px 500px at -10% 20%, color-mix(in oklab, var(--glow) 8%, transparent), transparent 60%),
+                   linear-gradient(160deg, oklch(0.97 0.025 264), oklch(0.94 0.045 264) 50%, oklch(0.96 0.035 264));
+  --gradient-soft: linear-gradient(180deg, oklch(0.99 0.01 264), oklch(0.97 0.02 264));
+  --shadow-elegant: 0 10px 40px -12px color-mix(in oklab, var(--navy-deep) 18%, transparent);
+  --shadow-glow: 0 0 50px -10px color-mix(in oklab, var(--glow) 35%, transparent);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .bg-hero-gradient { background: var(--gradient-hero); }
+  .bg-soft-gradient { background: var(--gradient-soft); }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .text-glow { color: var(--glow); }
+  .border-glow { border-color: color-mix(in oklab, var(--glow) 40%, transparent); }
+  .glass {
+    background: color-mix(in oklab, var(--navy-deep) 6%, transparent);
+    backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in oklab, var(--navy-deep) 12%, transparent);
+  }
+  /* Light glass variant for light sections */
+  .glass-light {
+    background: color-mix(in oklab, white 70%, transparent);
+    backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in oklab, var(--glow) 20%, transparent);
+    box-shadow: 0 4px 24px -6px color-mix(in oklab, var(--navy-deep) 10%, transparent);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float { animation: float-slow 6s ease-in-out infinite; }
