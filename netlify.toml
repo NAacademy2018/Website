@@ -1,6 +1,7 @@
 [build]
   command = "npm run build"
-  publish = ".netlify/images"
+  publish = ".output/public"
+  functions = ".output/server"
 
 [[redirects]]
   from = "/*"
